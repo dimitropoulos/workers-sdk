@@ -15853,7 +15853,7 @@ export default{
 
 		vi.mocked(getDetailsForAutoConfig).mockResolvedValue({
 			configured: false,
-			framework: new Static("static"),
+			framework: new Static({ id: "static", name: "Static" }),
 			workerName: "my-site",
 			projectPath: ".",
 		});
@@ -15923,7 +15923,7 @@ export default{
 
 		vi.mocked(getDetailsForAutoConfig).mockResolvedValue({
 			configured: true,
-			framework: new Static("static"),
+			framework: new Static({ id: "static", name: "Static" }),
 			workerName: "my-worker",
 			projectPath: ".",
 		});
