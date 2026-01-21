@@ -130,12 +130,12 @@ export const typesCommand = createCommand({
 		let config: Config;
 		const secondaryConfigs: Config[] = [];
 		if (Array.isArray(args.config)) {
-			config = readConfig({ ...args, config: args.config[0] });
+			config = await readConfig({ ...args, config: args.config[0] });
 			for (const configPath of args.config.slice(1)) {
-				secondaryConfigs.push(readConfig({ config: configPath }));
+				secondaryConfigs.push(await readConfig({ config: configPath }));
 			}
 		} else {
-			config = readConfig(args);
+			config = await readConfig(args);
 		}
 
 		const { envInterface, path: outputPath } = args;
@@ -341,7 +341,7 @@ export async function generateEnvTypes(
 
 	const configToDTS: ConfigToDTS = {
 		kv_namespaces: config.kv_namespaces ?? [],
-		vars: collectAllVars({ ...args, config: config.configPath }),
+		vars: await collectAllVars({ ...args, config: config.configPath }),
 		wasm_modules: config.wasm_modules,
 		text_blobs: {
 			...config.text_blobs,
@@ -848,9 +848,9 @@ type VarTypes = Record<string, string[]>;
  * @param args all the CLI arguments passed to the `types` command
  * @returns an object which keys are the variable names and values are arrays containing all the computed types for such variables
  */
-function collectAllVars(
+async function collectAllVars(
 	args: Partial<(typeof typesCommand)["args"]>
-): Record<string, string[]> {
+): Promise<Record<string, string[]>> {
 	const varsInfo: Record<string, Set<string>> = {};
 
 	// Collects onto the `varsInfo` object the vars and values for a specific environment
@@ -880,7 +880,7 @@ function collectAllVars(
 		});
 	}
 
-	const { rawConfig } = experimental_readRawConfig(args);
+	const { rawConfig } = await experimental_readRawConfig(args);
 	collectEnvironmentVars(rawConfig.vars);
 	Object.entries(rawConfig.env ?? {}).forEach(([_envName, env]) => {
 		collectEnvironmentVars(env.vars);

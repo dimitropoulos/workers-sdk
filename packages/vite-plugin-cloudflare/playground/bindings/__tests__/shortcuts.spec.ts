@@ -45,7 +45,7 @@ describe.skipIf(!satisfiesViteVersion("7.2.7"))("shortcuts", () => {
 	});
 });
 
-test("prints bindings with a single Worker", () => {
+test("prints bindings with a single Worker", async () => {
 	// Create a test server with a spy on bindCLIShortcuts
 	const mockBindCLIShortcuts = vi.spyOn(viteServer, "bindCLIShortcuts");
 	// Create mock plugin context
@@ -55,7 +55,7 @@ test("prints bindings with a single Worker", () => {
 	});
 
 	mockContext.setResolvedPluginConfig(
-		resolvePluginConfig(
+		await resolvePluginConfig(
 			{
 				configPath: path.resolve(__dirname, "../wrangler.jsonc"),
 			},
@@ -101,7 +101,7 @@ test("prints bindings with a single Worker", () => {
 	`);
 });
 
-test("prints bindings with multi Workers", () => {
+test("prints bindings with multi Workers", async () => {
 	// Create a test server with a spy on bindCLIShortcuts
 	const mockBindCLIShortcuts = vi.spyOn(viteServer, "bindCLIShortcuts");
 	// Create mock plugin context
@@ -111,7 +111,7 @@ test("prints bindings with multi Workers", () => {
 	});
 
 	mockContext.setResolvedPluginConfig(
-		resolvePluginConfig(
+		await resolvePluginConfig(
 			{
 				configPath: path.resolve(__dirname, "../wrangler.jsonc"),
 				auxiliaryWorkers: [
