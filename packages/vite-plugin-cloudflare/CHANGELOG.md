@@ -1,5 +1,14 @@
 # @cloudflare/vite-plugin
 
+## 1.21.2
+
+### Patch Changes
+
+- Updated dependencies [[`614bbd7`](https://github.com/cloudflare/workers-sdk/commit/614bbd709529191bbae6aa92790bbfe00a37e3d9), [`788bf78`](https://github.com/cloudflare/workers-sdk/commit/788bf786b4c5cb8e1bdd6464d3f88b4125cebc75), [`ae108f0`](https://github.com/cloudflare/workers-sdk/commit/ae108f090532765751c3996ba4c863a9fe858ddf), [`c3407ad`](https://github.com/cloudflare/workers-sdk/commit/c3407ada8cff1170ef2a3bbc4d3137dcf3998461), [`f9e8a45`](https://github.com/cloudflare/workers-sdk/commit/f9e8a452fb299e6cb1a0ff2985347bfc277deac8)]:
+  - wrangler@4.60.0
+  - miniflare@4.20260120.0
+  - @cloudflare/unenv-preset@2.11.0
+
 ## 1.21.1
 
 ### Patch Changes
